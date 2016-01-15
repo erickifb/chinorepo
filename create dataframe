@@ -1,0 +1,5 @@
+import pandas as pd
+
+table=[['Heading1', 'Heading2'],[1 , 2],[3, 4]]
+headers=table.pop(0)
+df2=pd.DataFrame(table, columns=headers)
