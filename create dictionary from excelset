@@ -1,0 +1,53 @@
+import openpyxl
+from openpyxl.cell import get_column_letter, column_index_from_string
+
+print get_column_letter(1)
+print get_column_letter(2)
+print get_column_letter(27)
+print get_column_letter(900)
+
+wb = openpyxl.load_workbook('//VCN.DS.VOLVO.NET/CLI-HM/HM0803/YI68009/My Documents/Python Scripts/empty_book.xlsx')
+sheet = wb.get_sheet_by_name('Sheet1')
+get_column_letter(sheet.get_highest_column())
+
+print column_index_from_string('A')
+print column_index_from_string('AA')
+
+
+sheet = wb.get_sheet_by_name('Sheet1')
+c=tuple(sheet['A2':'C7'])
+lst=list()
+
+
+for i in c:
+    lst2=list()
+    lst.append(lst2)
+    for ii in i:
+        print(ii.coordinate, ii.value)
+        lst2.append(ii.value)
+
+print lst
+
+for i in c:
+    for ii in i:
+        d=str(ii)        
+        d=d[-3:-2]
+        if d=="B":
+            print ii.value
+fruitdata={}
+dict1={}
+dict2={}
+dict3={}
+
+hihg=sheet.get_highest_row()
+print hihg
+
+for row in range(2, sheet.get_highest_row() + 1):
+    Time = str(sheet['A' + str(row)].value)
+    Time = Time[:10]
+    print Time
+    if Time not in dict1==True:
+        dict1[Time]=dict1.get(Time,0)
+    else:
+        dict1[Time]=Fruit
+       
