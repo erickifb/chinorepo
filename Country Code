@@ -1,0 +1,12 @@
+def countrycode(n):
+    import xml.etree.ElementTree as ET   
+    n=n.title()
+    tree = ET.parse('C:/Users/yi68009/Desktop/SCRAP/iso3166.xml')
+    root = tree.getroot()
+    for child in root.findall("iso_3166_entry"):
+        offname=(child.get("official_name"))
+        name=(child.get("name"))
+        #print name, offname
+        if n == offname or n== name:   
+           cc=child.get("alpha_2_code")
+           return cc 
