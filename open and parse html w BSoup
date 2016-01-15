@@ -1,0 +1,31 @@
+#open html links and parse html with beautiful soup
+
+import urllib
+from bs4 import  BeautifulSoup
+import re
+
+path="https://pr4e.dr-chuck.com/tsugi/mod/python-data/data/known_by_Caelen.html"
+
+count1=int(0)
+count2=int(1)
+name=str()
+tag=str()
+
+while count1<7:
+	url=path
+	html=urllib.urlopen(url).read()
+	soup=BeautifulSoup(html)
+	tags1=soup("a")	
+	count1=count1+1
+	count2=1
+	for tag in tags1:
+		if count2<=18:
+			i=tag.get("href", None)
+			print count2, i
+			
+			if count2==18 and count1==7:
+				name=re.findall(".+known_by_(.+).html",i)
+			if count2==18:
+				path=i
+			count2=count2+1
+print name
