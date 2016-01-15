@@ -1,0 +1,12 @@
+from openpyxl import load_workbook
+wb = load_workbook(filename = 'C:///Desktop/empty_book.xlsx')
+
+wb.get_sheet_names()
+
+sheet = wb.get_sheet_by_name('Pi')
+
+
+print sheet
+sheet.title
+
+anotherSheet = wb.get_active_sheet()
