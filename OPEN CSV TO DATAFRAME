@@ -1,0 +1,5 @@
+import pandas as pd
+import numpy
+
+csv = pd.read_csv("C:/Users/yi68009/Desktop/SCRAP/TBR.csv")
+print csv.head()
