@@ -1,0 +1,8 @@
+import pandas as pd
+df=pd.read_csv("C:/Users/yi68009/Desktop/SCRAP/TBR.csv")
+#subset
+df_sweden=df[(df.TB_CNOR_Country_Code=="SE")&(df.TB_CNEE_Country_Code=="SE")&(df.Textbox22>1000)]
+
+totalsum = df_sweden["Textbox22"].sum()
+totalcount= df_sweden["Textbox22"].count()
+
