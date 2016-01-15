@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jan 15 10:07:47 2016
+
+@author: erick
+"""
+import pandas as pd
+import os
+from pandas import io
+from pandas import ExcelWriter
+
+path = 'C:/Users/erick/Desktop/SCRAP/'
+files = os.listdir(path)
+files_xls = [f for f in files if f[-3:] == 'xls']
+
+df = pd.DataFrame()
+df2= pd.DataFrame()
+dflist=[]
+
+for f in files_xls:
+    data = pd.read_excel(path+f, "Applied_MFN")
+    df = df.append(data)
+dflist.append(df)
+
+for f in files_xls:
+    try:
+        data = pd.read_excel(path+f, "Applied_NonMFN")
+        df2 = df2.append(data)     
+    except:
+        continue
+
+dflist.append(df2)
+
+writer=ExcelWriter("C:/Users/erick/Desktop/SCRAP/output.xlsx")
+for n, element in enumerate(dflist):
+    element.to_excel(writer,"sheet%s" %n)
+
+writer.save()
+
+#if only one file and one sheet
+#df.to_excel("C:/Users/erick/Desktop/SCRAP/output.xlsx")
