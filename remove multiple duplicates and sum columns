@@ -1,0 +1,32 @@
+import pandas as pd
+df=pd.read_csv("C:/Users/erick/Desktop/SCRAP/TBR.csv")
+headers=["CC","DC","weight","volume"]
+
+temp=[]
+unique=[]
+cc=[]
+counter=0
+
+#loop through rows and create unique values
+for row in df.iterrows():
+#-------------------------------------------------
+    var1= df.TB_CNOR_Country_Code[counter]
+    var2= df.TB_CNEE_Country_Code[counter]
+    temp.extend((var1,var2))
+#-------------------------------------------------
+    if temp not in unique:
+        unique.append(temp)
+    temp=[]
+    counter=counter+1
+#Loop through unique values, subset df and sum columns
+for b in unique:
+    tempcc=df[(df.TB_CNOR_Country_Code==b[0])&(df.TB_CNEE_Country_Code==b[1])]
+ #-------------------------------------------------   
+    col1=tempcc["Textbox22"].sum()
+    col2=tempcc["Textbox23"].sum() 
+    temp.extend((b[0],b[1],col1,col2))
+#-------------------------------------------------   
+    cc.append(temp)
+    temp=[]
+    
+data=pd.DataFrame(cc, columns=headers)
