@@ -1,0 +1,9 @@
+def payload(weight,volume,OCC="SE",DCC="FR"):
+    if OCC!=DCC:
+        factor=333
+    elif OCC=="SE" and DCC =="SE":
+        factor=250
+    elif OCC=="FR" and DCC =="FR":
+        factor=250
+    PL= max(weight, volume*factor)
+    return PL
