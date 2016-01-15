@@ -1,0 +1,26 @@
+import pandas as pd
+df=pd.read_csv("C:/Users/erick/Desktop/SCRAP/TBR.csv")
+
+
+#Create unique value list
+cc=[]
+headers=["TB_CNOR_Country_Code","Weight", "Vol"]
+temp=[]
+cccheck=[]
+
+
+for i in df.TB_CNOR_Country_Code:
+    cccheck.append(i)
+    
+unique=list(set(cccheck))
+unique.sort() 
+    
+for b in unique:
+    tempcc=df[(df.TB_CNOR_Country_Code==b)]
+    tempkgs=tempcc["Textbox22"].sum()
+    tempvol=tempcc["Textbox23"].sum()
+    temp.extend((b,tempkgs,tempvol))
+    cc.append(temp)
+    temp=[]
+    
+data=pd.DataFrame(cc, columns=headers)
