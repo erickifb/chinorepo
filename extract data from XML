@@ -1,0 +1,36 @@
+#Week 5 Assignment, Extracting data from XML
+#Sample Data:
+
+#<?xml version="1.0" encoding="UTF-8"?>
+#<commentinfo>
+#  <note>This file contains the actual data for your assignment - good luck!</note>
+#
+#  <comments>
+#    <comment>
+#       <name>Taegan</name>
+#       <count>99</count>
+#    </comment>
+#    <comment>
+#       <name>Kiaya</name>
+#       <count>97</count>
+#    </comment>
+#    <comment>
+#       <name>Leah</name>
+#       <count>97</count>
+#    </comment>
+
+import urllib
+import xml.etree.ElementTree as ET
+lst=list()
+
+serviceurl = 'http://python-data.dr-chuck.net/comments_211384.xml'
+address = serviceurl
+data = urllib.urlopen(serviceurl).read()
+print data
+
+tree = ET.fromstring(data)
+results = tree.findall(".//comment")
+for item in results:
+	num = int(item.find('count').text)
+	lst.append(num)
+print sum(lst)
