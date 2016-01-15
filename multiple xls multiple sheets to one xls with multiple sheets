@@ -17,11 +17,14 @@ df = pd.DataFrame()
 df2= pd.DataFrame()
 dflist=[]
 
+
+#1st excel sheet name is "Applied_MFN"
 for f in files_xls:
     data = pd.read_excel(path+f, "Applied_MFN")
     df = df.append(data)
 dflist.append(df)
 
+#2nd excel sheet name is "Applied_NonMFN"
 for f in files_xls:
     try:
         data = pd.read_excel(path+f, "Applied_NonMFN")
@@ -31,6 +34,7 @@ for f in files_xls:
 
 dflist.append(df2)
 
+#save dataframes in different sheets in file output.xlsx
 writer=ExcelWriter("C:/Users/erick/Desktop/SCRAP/output.xlsx")
 for n, element in enumerate(dflist):
     element.to_excel(writer,"sheet%s" %n)
