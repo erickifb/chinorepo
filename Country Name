@@ -1,0 +1,13 @@
+def countryname(n):
+    import xml.etree.ElementTree as ET
+    n=n.upper()
+    tree = ET.parse('C:/Users/yi68009/Desktop/SCRAP/iso3166.xml')
+    root = tree.getroot()
+    for child in root.findall("iso_3166_entry"):
+        if len(n)>2:
+            return "invalid country code"
+            break        
+        cc=(child.get("alpha_2_code"))
+        if n == cc:   
+           cc=child.get("name")
+           return cc 
