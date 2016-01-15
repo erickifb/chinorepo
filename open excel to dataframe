@@ -1,0 +1,5 @@
+import pandas as pd
+df=pd.read_csv("C:/Users/yi68009/Desktop/SCRAP/TBR.csv")
+
+df_sweden=df[(df.TB_CNOR_Country_Code=="SE")&(df.TB_CNEE_Country_Code=="SE")&(df.Textbox22>1000)]
+df3=df_sweden[["TB_CNOR_Country_Code","Textbox22"]]
